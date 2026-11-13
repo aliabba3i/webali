@@ -15,6 +15,8 @@ Help the user access https://aistudio.google.com/generate-speech and generate sp
 - The user completes Google sign-in and security verification manually in their browser.
 - Do not change DNS, routes, firewall, proxy, or IPv4/IPv6 settings without explaining the exact change and receiving explicit approval.
 - DNS does not make a public IP static. A stable public IP requires an ISP static-IP service or dedicated static egress.
+- **GitHub Actions standard runners do not provide a fixed outbound IP.** Static public IP ranges are a feature for eligible GitHub Enterprise Cloud larger runners; they apply only to jobs running on those runners and do not change the user's local browser IP.
+- Do not build a GitHub Actions proxy/VPN/traffic relay for AI Studio or use GitHub egress to disguise location or evade Google's eligibility controls. See [GitHub egress guidance](docs/github-egress.md).
 - Prefer official Gemini API workflows when suitable; check current official documentation for model names and schemas.
 
 ## Workflow
@@ -38,6 +40,7 @@ Help the user access https://aistudio.google.com/generate-speech and generate sp
 - scripts/network_diagnostics.py: read-only DNS, IPv4, IPv6 and HTTPS checks.
 - scripts/check_environment.py: local prerequisite check.
 - docs/network.md: safe network guidance.
+- docs/github-egress.md: GitHub runner IP limitations and supported static-egress options.
 - docs/troubleshooting.md: decision tree.
 
 ## Definition of done
