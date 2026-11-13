@@ -13,6 +13,7 @@ This project does not bypass geographic eligibility, account checks, CAPTCHA, qu
 - HTTPS reachability check for AI Studio
 - Optional public egress IP check (off by default)
 - Safe guidance for manual Google sign-in
+- GitHub Actions egress-IP limitations and legitimate static-IP options
 - Troubleshooting documentation
 
 ## Requirements
@@ -47,8 +48,11 @@ Optional public egress IP check (contacts api.ipify.org):
 
 For API-based production workflows, consult https://ai.google.dev/gemini-api/docs and use current model names and request schemas.
 
+## GitHub IP note
+A normal GitHub Actions runner does not have a fixed outbound IP. GitHub documents static public IP ranges for eligible GitHub Enterprise Cloud larger runners only. Those ranges apply to jobs on the runner; they do not change your own computer or browser IP and are not a VPN/proxy. See [docs/github-egress.md](docs/github-egress.md) before designing any allowlist workflow.
+
 ## Network configuration
-The scripts are read-only. They do not modify DNS, routes, firewall rules, proxy settings, or IPv4/IPv6 configuration. DNS does not pin your public IP. For a stable public IP, ask your ISP about a static address or use a compliant dedicated static-egress service.
+The scripts are read-only. They do not modify DNS, routes, firewall rules, proxy settings, or IPv4/IPv6 configuration. DNS does not pin your public IP. For a stable public IP on your own computer, ask your ISP about a static address or use a compliant dedicated-egress service.
 
 See docs/network.md and docs/troubleshooting.md.
 
