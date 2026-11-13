@@ -22,6 +22,9 @@ The user signs in manually in the official browser. Never request or store passw
 ## Network policy
 Diagnose DNS, IPv4, IPv6, HTTPS, TLS, firewall, router, and ISP issues independently. Do not change network settings without explaining the exact change and receiving approval. DNS does not make a public IP static. A static public IP must come from the ISP or a legitimate dedicated-egress provider.
 
+### GitHub Actions IP behavior
+Standard GitHub-hosted runners use changing outbound IP addresses; a repository does not receive a dedicated fixed IP. GitHub documents static IP ranges for eligible GitHub Enterprise Cloud larger runners only. These ranges are the egress of the runner jobs, not the user's computer or browser. Do not implement a proxy, VPN, or traffic relay to route AI Studio browser traffic through GitHub or disguise location. Read gemini-tts-skill/docs/github-egress.md.
+
 ## Access restrictions
 Do not bypass geographic eligibility, account checks, CAPTCHA, quotas, rate limits, or security controls. Do not spoof location, rotate proxies to evade restrictions, or forge browser fingerprints. For a region/account eligibility message, stop and direct the user to Google's supported availability information. For quota errors, stop retries and use the documented reset or authorized quota path.
 
@@ -29,4 +32,4 @@ Do not bypass geographic eligibility, account checks, CAPTCHA, quotas, rate limi
 Use the official AI Studio interface or an authorized Gemini API workflow. Verify current API model identifiers and schemas in Google's official documentation before implementing API calls. Save audio through the official UI or supported API response handling.
 
 ## Troubleshooting
-Consult gemini-tts-skill/docs/troubleshooting.md and gemini-tts-skill/docs/network.md. Keep retries bounded and only retry transient network errors.
+Consult gemini-tts-skill/docs/troubleshooting.md, gemini-tts-skill/docs/network.md, and gemini-tts-skill/docs/github-egress.md. Keep retries bounded and only retry transient network errors.
